@@ -10,9 +10,11 @@ async function createTodo(data: FormData) {
     throw new Error('Invalid Title')
   }
 
-  await prisma.todo.create({ data: { title, complete: false } })
+  const res = await prisma.todo.create({ data: { title, complete: false } })
 
-  redirect('/')
+  if (res) {
+    redirect('..')
+  }
 }
 
 export default function Page() {
